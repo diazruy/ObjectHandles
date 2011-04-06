@@ -137,6 +137,11 @@ package com.roguedevelopment.objecthandles
 				if( obj.hasOwnProperty("rotation") ) rv.rotation = obj["rotation"];
 				if( obj.hasOwnProperty("isLocked") ) rv.isLocked = obj["isLocked"];
 				
+				// Create a bounds object with the rectangle surrounding the current element
+				// including rotation to use in Contraint calculations
+				var boundsGeometry:DragGeometry = calculateMultiGeometry();
+				rv.bounds = boundsGeometry.getRectangle();
+				
 				return rv;
 			} else {
 				// a lot of selected objects

@@ -30,6 +30,7 @@ package com.roguedevelopment.objecthandles.constraints
 	import com.roguedevelopment.objecthandles.HandleRoles;
 	import com.roguedevelopment.objecthandles.IConstraint;
 	
+	import flash.geom.Rectangle;
 	/**
 	 * This is a constraint that makes an object stay within a certain bounds.
 	 * 
@@ -47,19 +48,21 @@ package com.roguedevelopment.objecthandles.constraints
 			// Both are required for the logic to work
 			if(!original || !translation) return;
 			
+			var bounds:Rectangle = original.bounds;
+
 			if(!isNaN(maxX))
 			{
-				if((original.x + translation.x + original.width +
+				if((bounds.x + translation.x + bounds.width +
 					translation.width) > maxX)
 				{
 					if(HandleRoles.isMove(resizeHandleRole))
 					{
-						translation.x = maxX - (original.x + original.width);
+						translation.x = maxX - (bounds.x + bounds.width);
 					}
 					else if(HandleRoles.isResizeRight(resizeHandleRole))
 					{
-						translation.width = maxX - (original.x + translation.x +
-							original.width);
+						translation.width = maxX - (bounds.x + translation.x +
+							bounds.width);
 						
 					}
 				}
@@ -67,17 +70,17 @@ package com.roguedevelopment.objecthandles.constraints
 			
 			if(!isNaN(maxY))
 			{
-				if((original.y + translation.y + original.height +
+				if((bounds.y + translation.y + bounds.height +
 					translation.height) > maxY)
 				{
 					if(HandleRoles.isMove(resizeHandleRole))
 					{
-						translation.y = maxY - (original.y + original.height);
+						translation.y = maxY - (bounds.y + bounds.height);
 					}
 					else if(HandleRoles.isResizeDown(resizeHandleRole))
 					{
-						translation.height = maxY - (original.y + translation.y +
-							original.height);
+						translation.height = maxY - (bounds.y + translation.y +
+							bounds.height);
 						
 					}
 				}
@@ -85,27 +88,27 @@ package com.roguedevelopment.objecthandles.constraints
 			
 			if(!isNaN(minX))
 			{
-				if((original.x + translation.x) < minX)
+				if((bounds.x + translation.x) < minX)
 				{
-					translation.x = minX - original.x;
+					translation.x = minX - bounds.x;
 				}
-				if(HandleRoles.isResizeLeft(resizeHandleRole) && original.x -
+				if(HandleRoles.isResizeLeft(resizeHandleRole) && bounds.x -
 					translation.width < minX)
 				{
-					translation.width = - minX + original.x;
+					translation.width = - minX + bounds.x;
 				}
 			}
 			
 			if(!isNaN(minY))
 			{
-				if((original.y + translation.y) < minY)
+				if((bounds.y + translation.y) < minY)
 				{
-					translation.y = minY - original.y;
+					translation.y = minY - bounds.y;
 				}
-				if(HandleRoles.isResizeUp(resizeHandleRole) && original.y -
+				if(HandleRoles.isResizeUp(resizeHandleRole) && bounds.y -
 					translation.height < minY)
 				{
-					translation.height = - minY + original.y;
+					translation.height = - minY + bounds.y;
 				}
 				
 			}

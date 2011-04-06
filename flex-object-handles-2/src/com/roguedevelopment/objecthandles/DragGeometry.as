@@ -39,6 +39,7 @@ package com.roguedevelopment.objecthandles
 		[Bindable] public var height:Number=0;
 		[Bindable] public var rotation:Number=0;
 		[Bindable] public var isLocked:Boolean = false;
+		[Bindable] public var bounds:Rectangle = new Rectangle();
 
 		public function clone() : DragGeometry
 		{
@@ -48,6 +49,7 @@ package com.roguedevelopment.objecthandles
 			rv.width = width;
 			rv.height = height;
 			rv.rotation = rotation;
+			rv.bounds = bounds.clone();
 			return rv;
 		}
 
@@ -58,6 +60,7 @@ package com.roguedevelopment.objecthandles
 			width=other.width;
 			height=other.height;
 			rotation=other.rotation;
+			bounds=other.bounds.clone();
 		}
 
 		

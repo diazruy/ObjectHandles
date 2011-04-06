@@ -1,3 +1,6 @@
+Fork created to allow MovementConstraint to take into account selection rotation
+
+
 ***** VERSION 2
 
 This is a Version 2 release of ObjectHandles.  It was a rewrite from scratch with a completely different API.  If
